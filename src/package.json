@@ -1,0 +1,27 @@
+{
+  "name": "hbserver",
+  "version": "1.0.0",
+  "description": "A simple homebank nodejs server",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/renatus-cartesius/hbserver.git"
+  },
+  "keywords": [
+    "Homebank"
+  ],
+  "author": "cartesius.absolute@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/renatus-cartesius/hbserver/issues"
+  },
+  "homepage": "https://github.com/renatus-cartesius/hbserver#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "homebank-driver": "file:homebank-driver",
+    "nodemon": "^2.0.20"
+  }
+}
