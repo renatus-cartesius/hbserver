@@ -1,4 +1,8 @@
-# Logs
+# Homebank files
+
+*.xhb
+
+#Logs
 logs
 *.log
 npm-debug.log*

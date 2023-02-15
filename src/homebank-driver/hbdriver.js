@@ -12,21 +12,38 @@ class HBDriver {
         this.homebank = this.parser.parse(this.file).homebank;
     };
 
+    // Getting raw operations array in xhb file as Array[Object]
     get operations(){
-        let out_ope = this.homebank.ope;
-        
-        // Modifying operations for human-readable format
-        // out_ope.forEach(operation => {
-        //     operation.date = new Date(new jul().julian(738546 - 2440588).getDate())
-        //         .toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"});
-        // });
-
-        return out_ope;
+        return this.homebank.ope;
     }
 
+    // Getting all operations of account, provide with future option    
+    account_operations(key, opt={ withFutures: false}){
+        return this.operations.filter(ope => {
+            if(opt.withFutures) {
+                return (ope.account == key && parseInt(ope.date) <= parseInt(this.account(key).rdate));
+            } else {
+                return (ope.account == key);
+            }
+        });
+    }
+
+    // Getting raw accounts array in xhb file as Array[Object]
     get accounts(){
         return this.homebank.account;
-    }    
+    }
+
+    // Getting info about specific by key account
+    account(key){
+        return this.accounts.find(acc => acc.key == key);
+    }
+
+    // Get a balance
+    get_balance(key, opt={ onlyNow: true}){
+        return this.account_operations(key, {withFutures: !opt.onlyNow}).reduce((sum, ope)=>{
+            return sum += parseInt(ope.amount);
+        }, parseInt(this.account(key).initial));
+    }
 }
 
 module.exports = {
