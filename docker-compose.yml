@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  hbserver:
+    image: node:19-alpine3.16
+    command: sh -c "npm install && npm run dev"
+    volumes:
+      - './src:/hbserver/src'
+      - './hbdata:/hbdata'
+    working_dir: '/hbserver/src'
+    environment:
+      XHB_PATH: /hbdata/moneys.xhb
+      HBS_PORT: 3000
+    ports:
+      - 3000:3000
