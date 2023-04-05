@@ -2,6 +2,10 @@ const fxp = require("fast-xml-parser");
 const fs = require("fs");
 const jul = require("julian-date");
 
+function julian(){
+  const time_point = 730120;
+}
+
 class HBDriver {
     constructor(xhb_file, parser_options = {
         ignoreAttributes: false,
