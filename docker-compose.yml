@@ -22,8 +22,9 @@ services:
     restart: unless-stopped
     volumes:
       - hb-client-data:/var/lib/grafana/:rw
-      - ./grafana/provisioning/:/etc/grafana/provisioning/
+      - hb-client-etc:/etc/grafana/:rw
     container_name: hb-client
 
 volumes:
   hb-client-data:
+  hb-client-etc:

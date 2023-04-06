@@ -1,9 +1,12 @@
 const fxp = require("fast-xml-parser");
 const fs = require("fs");
-const jul = require("julian-date");
 
-function julian(){
-  const time_point = 730120;
+function julian(date){
+    const time_point = 730120;
+    const time_post_date = new Date("1/1/2000");
+    time_post_date.setDate(time_post_date.getDate() + (date - time_point));
+
+    return time_post_date;
 }
 
 class HBDriver {
@@ -18,7 +21,10 @@ class HBDriver {
 
     // Getting raw operations array in xhb file as Array[Object]
     get operations(){
-        return this.homebank.ope;
+        return this.homebank.ope.map((ope) => {
+            return Object.assign({}, {human_date: julian(ope.date)}, ope);
+        });
+        // return this.homebank.ope;
     }
 
     // Getting all operations of account, provide with future option    
