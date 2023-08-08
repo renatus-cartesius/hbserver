@@ -6,7 +6,7 @@ function julian(date){
     const time_post_date = new Date("1/1/2000");
     time_post_date.setDate(time_post_date.getDate() + (date - time_point));
 
-    return time_post_date;
+    return time_post_date.toLocaleString();
 }
 
 class HBDriver {
