@@ -3,9 +3,9 @@ version: '3'
 services:
   hb-server:
     image: node:19-alpine3.16
-    command: sh -c "npm install && npm run dev"
+    command: sh -c "npm install && npm run start"
     volumes:
-      - './src:/hbserver/src'
+      - './:/hbserver/src'
       - './hbdata:/hbdata'
     working_dir: '/hbserver/src'
     environment:
