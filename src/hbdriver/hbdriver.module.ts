@@ -5,5 +5,6 @@ import { HbdriverController } from './hbdriver.controller';
 @Module({
   providers: [HbdriverService],
   controllers: [HbdriverController],
+  exports: [HbdriverService]
 })
 export class HbdriverModule {}
