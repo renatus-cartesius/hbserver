@@ -12,6 +12,6 @@ export class ApiController {
   
   @Get('hb')
   hb(){
-    return this.hbdriveService.get();
+    return this.hbdriveService.operations;
   }
 }
