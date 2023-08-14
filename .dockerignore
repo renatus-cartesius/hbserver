@@ -1,0 +1,7 @@
+node-modules
+dist
+grafana
+Dockerfile
+.dockerignore
+.git
+config

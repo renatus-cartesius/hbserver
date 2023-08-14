@@ -1,5 +1,3 @@
-hserver:
-  listenPort: 3000
 hbdriver:
   xhbPath: '/hbdata/data.xhb'
   parserOpts:
