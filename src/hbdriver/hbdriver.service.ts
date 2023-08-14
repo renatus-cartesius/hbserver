@@ -33,7 +33,7 @@ export class HbdriverService {
     return this.accounts.find(account => account.key == id)
   }
 
-  account_operations(key, opt={ withFutures: false}){
+  accountOperations(key, opt={ withFutures: false}){
       return this.operations.filter(ope => {
           if(opt.withFutures) {
               return (ope.account == key && parseInt(ope.date) <= parseInt(this.account(key).rdate));
@@ -41,6 +41,12 @@ export class HbdriverService {
               return (ope.account == key);
           }
       });
+  }
+
+  accountBalance(key, opt={ withFutures: true }){
+    return this.accountOperations(key, {withFutures: !opt.withFutures}).reduce((sum, ope)=>{
+        return sum += parseInt(ope.amount);
+    }, parseInt(this.account(key).initial));
   }
 }
 
