@@ -5,7 +5,7 @@ import { HbdriverService } from 'src/hbdriver/hbdriver.service';
 export class OperationsController {
   constructor(private readonly hbdriverService: HbdriverService) {}
 
-  @Get('all')
+  @Get('')
   listAll(){
     return this.hbdriverService.operations;
   }
