@@ -2,28 +2,25 @@ version: '3'
 
 services:
   hb-server:
-    image: node:19-alpine3.16
-    command: sh -c "npm install && npm run dev"
+    #image: renatus-cartesius/hbserver
+    image: cartesius.space:5000/hbserver
+    build: .
     volumes:
-      - './src:/hbserver/src'
       - './hbdata:/hbdata'
-    working_dir: '/hbserver/src'
-    environment:
-      XHB_PATH: /hbdata/moneys.xhb
-      HBS_PORT: 80
+      - './config.yml:/etc/hbserver/config.yml'
     ports:
-      - 8080:80
+      - 8080:3000
     container_name: hb-server
 
-  hb-client:
-    image: grafana/grafana:main-ubuntu
-    ports:
-      - 80:3000
-    restart: unless-stopped
-    volumes:
-      - hb-client-data:/var/lib/grafana/:rw
-      - hb-client-etc:/etc/grafana/:rw
-    container_name: hb-client
+  # hb-client:
+  #   image: grafana/grafana:main-ubuntu
+  #   ports:
+  #     - 80:3000
+  #   restart: unless-stopped
+  #   volumes:
+  #     - hb-client-data:/var/lib/grafana/:rw
+  #     - hb-client-etc:/etc/grafana/:rw
+  #   container_name: hb-client
 
 volumes:
   hb-client-data:

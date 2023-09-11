@@ -1,0 +1,5 @@
+hbdriver:
+  xhbPath: '/hbdata/data.xhb'
+  parserOpts:
+    ignoreAttributes: false
+    attributeNamePrefix: ""
